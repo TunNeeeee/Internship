@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.134.3">
+    <meta name="description" content="">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Policy Management with OPA Gatekeeper (Windows) :: Create a new AWS account.</title>
+
+    
+    <link href="/css/nucleus.css?1753978984" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753978984" rel="stylesheet">
+    <link href="/css/hybrid.css?1753978984" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753978984" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753978984" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753978984" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753978984" rel="stylesheet">
+    <link href="/css/theme.css?1753978984" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753978984" rel="stylesheet">
+    
+    <link href="/css/theme-workshop.css?1753978984" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1753978984"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1753978984"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753978984"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1753978984"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-intro-to-container-security/" title="Introduction to Container Security" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-intro-to-container-security/">
+          <b> 1. </b>Introduction to Container Security
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-intro-to-container-security/1-overview/" title="Overview of Container Security" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-intro-to-container-security/1-overview/">
+          <b> 1.1 </b>Overview of Container Security
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-intro-to-container-security/2-threat-modeling/" title="Threat Modeling" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-intro-to-container-security/2-threat-modeling/">
+          <b> 1.2 </b>Threat Modeling
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-setup-aws-eks/" title="Provisioning an EKS Cluster on AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-setup-aws-eks/">
+          <b> 2. </b>Provisioning an EKS Cluster on AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-setup-aws-eks/1-create-eks-cluster/" title="Creating EKS Cluster on AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-setup-aws-eks/1-create-eks-cluster/">
+          <b> 2.1 </b>Creating EKS Cluster on AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-setup-aws-eks/2-deploy-demo-workloads/" title="Deploy Sample Workload on EKS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-setup-aws-eks/2-deploy-demo-workloads/">
+          <b> 2.2 </b>Deploy Sample Workload on EKS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-container-security-hardening/" title="Container Security Hardening" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-container-security-hardening/">
+          <b> 3. </b>Container Security Hardening
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-container-security-hardening/1-image-scanning-with-trivy/" title="Container Image Vulnerability Scanning with Trivy (via Docker)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-container-security-hardening/1-image-scanning-with-trivy/">
+          <b> 3.1 </b>Container Image Vulnerability Scanning with Trivy (via Docker)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-container-security-hardening/2-cis-benchmark-with-kubebench/" title="CIS Benchmark Compliance Check with kube-bench" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-container-security-hardening/2-cis-benchmark-with-kubebench/">
+          <b> 3.2 </b>CIS Benchmark Compliance Check with kube-bench
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-container-security-hardening/3-network-policy/" title="Implementing NetworkPolicy in Kubernetes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-container-security-hardening/3-network-policy/">
+          <b> 3.3 </b>Implementing NetworkPolicy in Kubernetes
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-policy-enforcement-and-runtime-protection/" title="Policy Enforcement &amp; Runtime Protection" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/4-policy-enforcement-and-runtime-protection/">
+          <b> 4. </b>Policy Enforcement &amp; Runtime Protection
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/" title="Policy Management with OPA Gatekeeper (Windows)" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/">
+          <b> 4.1 </b>Policy Management with OPA Gatekeeper (Windows)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/" title="Runtime Monitoring with Falco (Windows)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/">
+          <b> 4.2 </b>Runtime Monitoring with Falco (Windows)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-policy-enforcement-and-runtime-protection/3-automated-remediation/" title="Automated Response to Violations with Falcosidekick" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-policy-enforcement-and-runtime-protection/3-automated-remediation/">
+           4.3 Automated Response to Violations with Falcosidekick
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-security-monitoring-and-response/" title="Security Monitoring &amp; Response" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-security-monitoring-and-response/">
+          <b>5. </b>Security Monitoring &amp; Response
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-security-monitoring-and-response/1-logging-with-cloudwatch/" title="Container Logging to CloudWatch with Fluent Bit" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-security-monitoring-and-response/1-logging-with-cloudwatch/">
+           5.1 Container Logging to CloudWatch with Fluent Bit
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-security-monitoring-and-response/2-security-dashboard/" title="Security Dashboard - EKS Security Monitoring" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-security-monitoring-and-response/2-security-dashboard/">
+           5.2 Security Dashboard - EKS Security Monitoring
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-security-monitoring-and-response/3-penetration-testing/" title=" Penetration Testing" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-security-monitoring-and-response/3-penetration-testing/">
+          5.3 Penetration Testing
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://aws.amazon.com/blogs"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/" selected>English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="/vi/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/">Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830891&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>26-11-2023</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Gia Hưng</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Container Security Hardening and Runtime Protection</a> > <a href='/4-policy-enforcement-and-runtime-protection/'>Policy Enforcement & Runtime Protection</a> > Policy Management with OPA Gatekeeper (Windows)
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#main-content">Main Content</a></li>
+    <li><a href="#introduction">Introduction</a>
+      <ul>
+        <li><a href="#key-benefits">Key Benefits</a></li>
+      </ul>
+    </li>
+    <li><a href="#installing-helm-on-windows">Installing Helm on Windows</a>
+      <ul>
+        <li><a href="#method-1-manual-installation">Method 1: Manual Installation</a></li>
+        <li><a href="#method-2-using-package-managers">Method 2: Using Package Managers</a></li>
+      </ul>
+    </li>
+    <li><a href="#deploying-gatekeeper-on-eks">Deploying Gatekeeper on EKS</a>
+      <ul>
+        <li><a href="#step-1-add-gatekeeper-helm-repository">Step 1: Add Gatekeeper Helm repository</a></li>
+        <li><a href="#step-2-install-gatekeeper">Step 2: Install Gatekeeper</a></li>
+        <li><a href="#step-3-verify-pod-status">Step 3: Verify pod status</a></li>
+        <li><a href="#step-4-verify-gatekeeper-installation">Step 4: Verify Gatekeeper installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#writing-and-testing-policies">Writing and testing policies</a>
+      <ul>
+        <li><a href="#step-1-create-templateyaml-file">Step 1: Create <code>template.yaml</code> file</a></li>
+        <li><a href="#step-2-create-constraintyaml-file">Step 2: Create <code>constraint.yaml</code> file</a></li>
+        <li><a href="#step-3-test-with-a-violating-pod">Step 3: Test with a violating pod</a></li>
+        <li><a href="#step-4-test-with-a-compliant-pod">Step 4: Test with a compliant pod</a></li>
+      </ul>
+    </li>
+    <li><a href="#advanced-policy-examples">Advanced Policy Examples</a>
+      <ul>
+        <li><a href="#1-require-resource-limits">1. Require resource limits</a></li>
+        <li><a href="#2-enforce-security-contexts">2. Enforce security contexts</a></li>
+      </ul>
+    </li>
+    <li><a href="#monitoring-and-troubleshooting">Monitoring and Troubleshooting</a>
+      <ul>
+        <li><a href="#check-constraint-status">Check constraint status</a></li>
+        <li><a href="#view-audit-violations">View audit violations</a></li>
+        <li><a href="#debug-policy-issues">Debug policy issues</a></li>
+      </ul>
+    </li>
+    <li><a href="#best-practices">Best Practices</a>
+      <ul>
+        <li><a href="#policy-development">Policy Development</a></li>
+        <li><a href="#performance-considerations">Performance Considerations</a></li>
+        <li><a href="#security">Security</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Policy Management with OPA Gatekeeper (Windows)
+            </h1>
+          
+
+        
+
+
+
+	<h2 id="main-content">Main Content</h2>
+<ul>
+<li><a href="/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/#introduction">Introduction to OPA Gatekeeper</a></li>
+<li><a href="/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/#installing-helm-on-windows">Installing Helm on Windows</a></li>
+<li><a href="/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/#deploying-gatekeeper-on-eks">Deploying Gatekeeper on EKS</a></li>
+<li><a href="/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/#writing-and-testing-policies">Writing and testing policies</a></li>
+</ul>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p><strong>OPA (Open Policy Agent)</strong> is a tool used to enforce policies across multiple systems. Gatekeeper is an extension project that helps apply OPA to Kubernetes.</p>
+<p>Gatekeeper helps with:</p>
+<ul>
+<li>Controlling deployments based on rules (constraints)</li>
+<li>Logging policy violations</li>
+<li>Preventing unsafe configurations (e.g., banning images with <code>:latest</code> tag)</li>
+</ul>
+<h3 id="key-benefits">Key Benefits</h3>
+<ul>
+<li><strong>Admission Control</strong>: Validates resources before they&rsquo;re created</li>
+<li><strong>Audit Mode</strong>: Identifies existing violations without blocking</li>
+<li><strong>Custom Policies</strong>: Write policies using Rego language</li>
+<li><strong>Mutation</strong>: Automatically modify resources to comply with policies</li>
+</ul>
+<hr>
+<h2 id="installing-helm-on-windows">Installing Helm on Windows</h2>
+<h3 id="method-1-manual-installation">Method 1: Manual Installation</h3>
+<ol>
+<li>Visit <a href="https://github.com/helm/helm/releases">https://github.com/helm/helm/releases</a></li>
+<li>Download file: <code>helm-v3.x.x-windows-amd64.zip</code></li>
+<li>Extract → Get the <code>helm.exe</code> file</li>
+<li>Create directory e.g.: <code>C:\Program Files\helm\</code> → copy <code>helm.exe</code> into it</li>
+<li>Add the path to <code>Environment Variables &gt; Path</code></li>
+<li>Open PowerShell/CMD and verify:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm version
+</span></span></code></pre></div><h3 id="method-2-using-package-managers">Method 2: Using Package Managers</h3>
+<p><strong>Using Chocolatey:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>choco install kubernetes-helm
+</span></span></code></pre></div><p><strong>Using Scoop:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>scoop install helm
+</span></span></code></pre></div><p><strong>Using winget:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>winget install Helm.Helm
+</span></span></code></pre></div><p>✅ If version appears, installation is successful.</p>
+<hr>
+<h2 id="deploying-gatekeeper-on-eks">Deploying Gatekeeper on EKS</h2>
+<h3 id="step-1-add-gatekeeper-helm-repository">Step 1: Add Gatekeeper Helm repository</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm repo add gatekeeper https://open-policy-agent.github.io/gatekeeper/charts
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span></code></pre></div><h3 id="step-2-install-gatekeeper">Step 2: Install Gatekeeper</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install gatekeeper gatekeeper/gatekeeper <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --namespace gatekeeper-system <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --create-namespace
+</span></span></code></pre></div><h3 id="step-3-verify-pod-status">Step 3: Verify pod status</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl get pods -n gatekeeper-system
+</span></span></code></pre></div><p>Expected output should show pods in <code>Running</code> state:</p>
+<pre tabindex="0"><code>NAME                                             READY   STATUS    RESTARTS   AGE
+gatekeeper-audit-7f9c8b8b8b-xxxxx               1/1     Running   0          2m
+gatekeeper-controller-manager-xxxxx-xxxxx       1/1     Running   0          2m
+gatekeeper-controller-manager-xxxxx-yyyyy       1/1     Running   0          2m
+</code></pre><p>📸 Take a screenshot of the Running status.</p>
+<h3 id="step-4-verify-gatekeeper-installation">Step 4: Verify Gatekeeper installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl get crd | grep gatekeeper
+</span></span><span style="display:flex;"><span>kubectl api-resources | grep gatekeeper
+</span></span></code></pre></div><hr>
+<h2 id="writing-and-testing-policies">Writing and testing policies</h2>
+<h3 id="step-1-create-templateyaml-file">Step 1: Create <code>template.yaml</code> file</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">templates.gatekeeper.sh/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConstraintTemplate</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">k8srequiredimagetag</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">crd</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">names</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">K8sRequiredImageTag</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">validation</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">allowedTags</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">type</span>: <span style="color:#ae81ff">array</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">items</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">targets</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">target</span>: <span style="color:#ae81ff">admission.k8s.gatekeeper.sh</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">rego</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        package k8srequiredimagetag
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        violation[{&#34;msg&#34;: msg}] {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          container := input.review.object.spec.containers[_]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          endswith(container.image, &#34;:latest&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          msg := &#34;Container image must not use &#39;latest&#39; tag&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        violation[{&#34;msg&#34;: msg}] {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          container := input.review.object.spec.containers[_]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          not contains(container.image, &#34;:&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          msg := &#34;Container image must specify a tag&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }</span>        
+</span></span></code></pre></div><p>Apply the template:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl apply -f template.yaml
+</span></span></code></pre></div><h3 id="step-2-create-constraintyaml-file">Step 2: Create <code>constraint.yaml</code> file</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">constraints.gatekeeper.sh/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">K8sRequiredImageTag</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">disallow-latest-tag</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">match</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kinds</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">apiGroups</span>: [<span style="color:#e6db74">&#34;&#34;</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kinds</span>: [<span style="color:#e6db74">&#34;Pod&#34;</span>]
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">apiGroups</span>: [<span style="color:#e6db74">&#34;apps&#34;</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kinds</span>: [<span style="color:#e6db74">&#34;Deployment&#34;</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">parameters</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">allowedTags</span>: [<span style="color:#e6db74">&#34;v1.0&#34;</span>, <span style="color:#e6db74">&#34;stable&#34;</span>, <span style="color:#e6db74">&#34;production&#34;</span>]
+</span></span></code></pre></div><p>Apply the constraint:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl apply -f constraint.yaml
+</span></span></code></pre></div><h3 id="step-3-test-with-a-violating-pod">Step 3: Test with a violating pod</h3>
+<p>Create <code>test-pod.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">test-pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx:latest</span>
+</span></span></code></pre></div><p>Try to apply:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl apply -f test-pod.yaml
+</span></span></code></pre></div><p>➡️ <strong>Expected Result</strong>: Pod will be rejected due to policy violation.</p>
+<p><strong>Error message should be similar to:</strong></p>
+<pre tabindex="0"><code>error validating data: ValidationError(Pod.spec.containers[0].image): 
+Container image must not use &#39;latest&#39; tag
+</code></pre><h3 id="step-4-test-with-a-compliant-pod">Step 4: Test with a compliant pod</h3>
+<p>Create <code>compliant-pod.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">compliant-pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx:1.21</span>
+</span></span></code></pre></div><p>Apply:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl apply -f compliant-pod.yaml
+</span></span></code></pre></div><p>✅ <strong>Expected Result</strong>: Pod should be created successfully.</p>
+<hr>
+<h2 id="advanced-policy-examples">Advanced Policy Examples</h2>
+<h3 id="1-require-resource-limits">1. Require resource limits</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">templates.gatekeeper.sh/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConstraintTemplate</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">k8srequireresources</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">crd</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">names</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">K8sRequireResources</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">targets</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">target</span>: <span style="color:#ae81ff">admission.k8s.gatekeeper.sh</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">rego</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        package k8srequireresources
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        violation[{&#34;msg&#34;: msg}] {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          container := input.review.object.spec.containers[_]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          not container.resources.limits.memory
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          msg := &#34;Container must specify memory limits&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        violation[{&#34;msg&#34;: msg}] {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          container := input.review.object.spec.containers[_]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          not container.resources.limits.cpu
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          msg := &#34;Container must specify CPU limits&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }</span>        
+</span></span></code></pre></div><h3 id="2-enforce-security-contexts">2. Enforce security contexts</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">templates.gatekeeper.sh/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConstraintTemplate</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">k8srequiresecuritycontext</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">crd</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">names</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">K8sRequireSecurityContext</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">targets</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">target</span>: <span style="color:#ae81ff">admission.k8s.gatekeeper.sh</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">rego</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        package k8srequiresecuritycontext
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        violation[{&#34;msg&#34;: msg}] {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          container := input.review.object.spec.containers[_]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          not container.securityContext.runAsNonRoot
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          msg := &#34;Container must run as non-root user&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        violation[{&#34;msg&#34;: msg}] {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          container := input.review.object.spec.containers[_]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          container.securityContext.privileged
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          msg := &#34;Container must not run in privileged mode&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }</span>        
+</span></span></code></pre></div><hr>
+<h2 id="monitoring-and-troubleshooting">Monitoring and Troubleshooting</h2>
+<h3 id="check-constraint-status">Check constraint status</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl get constraints
+</span></span><span style="display:flex;"><span>kubectl describe k8srequiredimagetag disallow-latest-tag
+</span></span></code></pre></div><h3 id="view-audit-violations">View audit violations</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl get constraints -o yaml | grep -A <span style="color:#ae81ff">10</span> violations
+</span></span></code></pre></div><h3 id="debug-policy-issues">Debug policy issues</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check Gatekeeper logs</span>
+</span></span><span style="display:flex;"><span>kubectl logs -n gatekeeper-system deployment/gatekeeper-controller-manager
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if templates are valid</span>
+</span></span><span style="display:flex;"><span>kubectl get constrainttemplate k8srequiredimagetag -o yaml
+</span></span></code></pre></div><hr>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="policy-development">Policy Development</h3>
+<ol>
+<li><strong>Start with Audit Mode</strong>: Test policies without enforcement first</li>
+<li><strong>Gradual Rollout</strong>: Apply policies to non-critical namespaces first</li>
+<li><strong>Clear Error Messages</strong>: Write descriptive violation messages</li>
+<li><strong>Test Thoroughly</strong>: Validate policies with various resource configurations</li>
+</ol>
+<h3 id="performance-considerations">Performance Considerations</h3>
+<ol>
+<li><strong>Efficient Rego</strong>: Write optimized Rego policies</li>
+<li><strong>Resource Limits</strong>: Set appropriate limits for Gatekeeper components</li>
+<li><strong>Monitoring</strong>: Monitor Gatekeeper performance and admission latency</li>
+</ol>
+<h3 id="security">Security</h3>
+<ol>
+<li><strong>Namespace Exclusions</strong>: Exclude system namespaces when appropriate</li>
+<li><strong>RBAC</strong>: Implement proper RBAC for policy management</li>
+<li><strong>Policy Reviews</strong>: Regular review and update of policies</li>
+</ol>
+<hr>
+<p>✅ <strong>Notes</strong>:</p>
+<ul>
+<li>Gatekeeper is highly effective in controlling deployments</li>
+<li>Policies can be extended and customized based on requirements</li>
+<li>Integration with CI/CD pipelines helps catch violations early</li>
+<li>Regular monitoring and updates ensure policy effectiveness</li>
+</ul>
+<hr>
+<p>Next: <a href="/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/">4.2 Runtime Monitoring with Falco →</a></p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/4-policy-enforcement-and-runtime-protection/" title="Policy Enforcement &amp; Runtime Protection"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/" title="Runtime Monitoring with Falco (Windows)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1753978984"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753978984"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753978984"></script>
+    <script src="/js/jquery.sticky.js?1753978984"></script>
+    <script src="/js/featherlight.min.js?1753978984"></script>
+    <script src="/js/highlight.pack.js?1753978984"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753978984"></script>
+    <script src="/js/learn.js?1753978984"></script>
+    <script src="/js/hugo-learn.js?1753978984"></script>
+
+    <link href="/mermaid/mermaid.css?1753978984" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753978984"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
