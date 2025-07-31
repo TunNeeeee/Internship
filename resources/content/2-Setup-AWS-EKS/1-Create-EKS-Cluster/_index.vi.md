@@ -97,6 +97,36 @@ Mở PowerShell hoặc terminal trong VS Code, chuyển đến thư mục chứa
  ```bash
  eksctl create cluster -f eks-cluster.yaml
 ```
+Lỗi bạn có thể gặp là:
+Error: cannot find EC2 key pair "~/.ssh/id_rsa.pub"
+💡 Nguyên nhân: Trong file cấu hình eks-cluster.yaml, bạn có bật SSH cho node group:
+
+```yaml
+ssh:
+  allow: true
+  ```
+Khi allow: true, eksctl sẽ cố tìm file ~/.ssh/id_rsa.pub để dùng làm key pair SSH – nhưng hiện tại bạn chưa tạo key này trên máy Windows.
+
+Lúc đó bạn cần tạo key pair SSH thủ công
+Mở PowerShell và chạy:
+
+```powershell
+ssh-keygen
+```
+Nhấn Enter liên tục để chấp nhận đường dẫn mặc định (C:\Users\<tên_user>\.ssh\id_rsa)
+
+Sau đó kiểm tra file:
+
+```powershell
+type $env:USERPROFILE\.ssh\id_rsa.pub
+```
+Chạy lại lệnh tạo cluster:
+
+```bash
+eksctl create cluster -f eks-cluster.yaml
+```
+📌 eksctl sẽ tự lấy file id_rsa.pub và tạo key pair tương ứng trong AWS EC2.
+
 ⏳ Quá trình tạo có thể mất 10–15 phút.
 eksctl sẽ tạo: VPC, IAM role, Security Group, Control Plane, EC2 Node…
 

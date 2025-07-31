@@ -1,61 +1,38 @@
 ---
-title : "MFA for AWS Accounts"
-date : "`r Sys.Date()`"
-weight : 2
-chapter : false
-pre : " <b> 2. </b> "
+title: "Provisioning an EKS Cluster on AWS"
+date: "2025-07-01"
+weight: 2
+chapter: false
+pre: "<b> 2. </b>"
 ---
+## Overview
 
-#### Multi-Factor Authentication (MFA) Setup
-
-During the authentication process, you will need to utilize three different MFA devices to ensure the security of your account.
-
-1. **Virtual MFA Devices (Smartphone Apps)**: Install the following apps on your smartphone and set them up for MFA:
-   - Microsoft Authenticator
-   - Google Authenticator
-   - Okta Verify
-
-2. **Hard U2F Security Key**: Obtain a hard U2F security key to enhance your account's security.
-
-3. **Other Hardware MFA Devices (e.g., Gemalto Security Keys)**: Consider using additional hardware MFA devices for added protection.
-
-## Content
-
-- [Content](#content)
-- [1. Setup with Virtual MFA Device](#1-setup-with-virtual-mfa-device)
-- [2. Setup with U2F Security Key](#2-setup-with-u2f-security-key)
-- [3. Setup with Other Hardware MFA Device](#3-setup-with-other-hardware-mfa-device)
+In this chapter, you will learn how to **provision a real Kubernetes environment on AWS using Amazon EKS**. This is a critical prerequisite for deploying container security techniques in the upcoming sections.
 
 ---
 
-## 1. Setup with Virtual MFA Device
+## 🎯 Learning Objectives
 
-To set up your virtual MFA device using apps on your smartphone, follow these steps:
-
-- Step 1: Install the Microsoft Authenticator, Google Authenticator, and Okta Verify apps on your smartphone.
-- Step 2: Open the app and follow the on-screen instructions to add your account.
-- Step 3: Use the app-generated codes during the MFA authentication process.
+By the end of this chapter, you will know how to **set up a real Kubernetes environment on AWS using Amazon EKS**. This step is essential for practicing container security in later labs.
 
 ---
 
-## 2. Setup with U2F Security Key
+## 📚 What You Will Learn
 
-Setting up your U2F security key involves the following steps:
+- **2.1 Creating an EKS Cluster**  
+  Step-by-step instructions for creating an EKS cluster using `eksctl`, including IAM roles, VPC setup, and node group configuration.
 
-- Step 1: Obtain a compatible U2F security key.
-- Step 2: Connect the key to your device's USB port.
-- Step 3: During authentication, insert the key and follow the prompts to complete the process.
-
----
-
-## 3. Setup with Other Hardware MFA Device
-
-Consider using hardware MFA devices like Gemalto security keys for an extra layer of security:
-
-- Step 1: Acquire a Gemalto security key or a similar hardware device.
-- Step 2: Connect and set up the device as per the manufacturer's instructions.
-- Step 3: Integrate the device into your MFA authentication workflow.
+- **2.2 Deploying a Sample Workload**  
+  Deploy a sample application (nginx + backend) on EKS to serve as a testing environment for security labs.
 
 ---
 
-Remember to keep your MFA devices secure and follow best practices to ensure the safety of your account.
+## ✅ Outcomes
+
+- Successfully provision a working Kubernetes cluster on AWS  
+- Properly configure IAM permissions and connect to the cluster using `kubectl`  
+- Deploy a sample application to use in upcoming security labs  
+
+---
+
+🚀 *Let’s begin with section 2.1 – Creating an EKS Cluster!*

@@ -2,7 +2,7 @@
 title: "Khởi tạo Cluster EKS trên AWS"
 date: 2025-07-01
 weight: 2
-chapter: true
+chapter: false
 pre: "<b> 2. </b>"
 ---
 

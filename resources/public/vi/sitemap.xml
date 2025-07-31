@@ -2,8 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>//localhost:1313/vi/5-security-monitoring-and-response/1-logging-with-cloudwatch/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/5-security-monitoring-and-response/1-logging-with-cloudwatch/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/5-security-monitoring-and-response/1-logging-with-cloudwatch/"
+                />
+  </url><url>
     <loc>//localhost:1313/vi/</loc>
-    <lastmod>2025-07-07T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -13,6 +26,32 @@
                 rel="alternate"
                 hreflang="vi"
                 href="//localhost:1313/vi/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/3-container-security-hardening/1-image-scanning-with-trivy/</loc>
+    <lastmod>2025-07-13T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-container-security-hardening/1-image-scanning-with-trivy/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-container-security-hardening/1-image-scanning-with-trivy/"
                 />
   </url><url>
     <loc>//localhost:1313/vi/1-intro-to-container-security/</loc>
@@ -54,6 +93,45 @@
                 href="//localhost:1313/vi/1-intro-to-container-security/1-overview/"
                 />
   </url><url>
+    <loc>//localhost:1313/vi/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/5-security-monitoring-and-response/2-security-dashboard/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/5-security-monitoring-and-response/2-security-dashboard/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/5-security-monitoring-and-response/2-security-dashboard/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/3-container-security-hardening/2-cis-benchmark-with-kubebench/</loc>
+    <lastmod>2025-07-13T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-container-security-hardening/2-cis-benchmark-with-kubebench/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-container-security-hardening/2-cis-benchmark-with-kubebench/"
+                />
+  </url><url>
     <loc>//localhost:1313/vi/1-intro-to-container-security/2-threat-modeling/</loc>
     <lastmod>2025-07-07T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -93,7 +171,47 @@
                 href="//localhost:1313/vi/2-setup-aws-eks/"
                 />
   </url><url>
+    <loc>//localhost:1313/vi/5-security-monitoring-and-response/3-penetration-testing/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/5-security-monitoring-and-response/3-penetration-testing/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/5-security-monitoring-and-response/3-penetration-testing/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/4-policy-enforcement-and-runtime-protection/3-automated-remediation/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-policy-enforcement-and-runtime-protection/3-automated-remediation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-policy-enforcement-and-runtime-protection/3-automated-remediation/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/3-container-security-hardening/3-network-policy/</loc>
+    <lastmod>2025-07-13T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-container-security-hardening/3-network-policy/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-container-security-hardening/3-network-policy/"
+                />
+  </url><url>
     <loc>//localhost:1313/vi/3-container-security-hardening/</loc>
+    <lastmod>2025-07-13T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -106,6 +224,7 @@
                 />
   </url><url>
     <loc>//localhost:1313/vi/4-policy-enforcement-and-runtime-protection/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -115,6 +234,19 @@
                 rel="alternate"
                 hreflang="vi"
                 href="//localhost:1313/vi/4-policy-enforcement-and-runtime-protection/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/5-security-monitoring-and-response/</loc>
+    <lastmod>2025-07-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/5-security-monitoring-and-response/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/5-security-monitoring-and-response/"
                 />
   </url><url>
     <loc>//localhost:1313/vi/categories/</loc>

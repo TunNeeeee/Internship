@@ -1,78 +1,82 @@
 ---
-title : "Create Lambda Function"
-date : 2025-07-01
-weight : 2
-chapter : false
-pre : "<b> 2. </b>"
+title: "Threat Modeling"
+date: 2025-07-07
+weight: 2
+chapter: false
+pre: "<b> 1.2 </b>"
 ---
 
-**Contents:**
+**Main Contents:**
 
-- [Create a Lambda Function](#create-a-lambda-function)
-- [Configure Lambda Function](#configure-lambda-function)
-- [Write and Edit Code](#write-and-edit-code)
-- [Test Lambda Function](#test-lambda-function)
-
----
-
-## Create a Lambda Function
-
-1. Go to [AWS Management Console](https://console.aws.amazon.com/)
-2. Search for and select the **Lambda** service
-3. On the Lambda dashboard, click **Create function**
-
-![Create Lambda](/images/lab1/001.png)  
-![Create Lambda](/images/lab1/002.png)
+- [What is the STRIDE model?](#what-is-the-stride-model)
+- [Identifying container attack surfaces](#identifying-container-attack-surfaces)
+- [Drawing a threat model diagram](#drawing-a-threat-model-diagram)
+- [Hands-on threat modeling for a containerized app](#hands-on-threat-modeling-for-a-containerized-app)
 
 ---
 
-## Configure Lambda Function
+## What is the STRIDE model?
 
-On the **Create function** screen, do the following:
+**STRIDE** is a threat modeling framework that helps identify potential threats in a system. It consists of:
 
-- Choose: **Author from scratch**
-- Function name: `hello-aws-sls-2025`
-- Runtime: choose `Python 3.13` or `Node.js 22.x` (your choice)
-- Architecture: choose `arm64`
+| Component | Threat Type                              |
+|-----------|-------------------------------------------|
+| S         | Spoofing – Identity impersonation         |
+| T         | Tampering – Data manipulation             |
+| R         | Repudiation – Denial of actions           |
+| I         | Information Disclosure – Data leakage     |
+| D         | Denial of Service – Service disruption    |
+| E         | Elevation of Privilege – Privilege escalation |
 
-![Create Lambda](/images/lab1/003.png)
-
-**Permissions:**
-
-- Click **Change default execution role**
-- Then choose one of the following:
-  - `Create a new role with basic Lambda permissions`
-  - or `Use an existing role` if you've already created one
-
-![Create Lambda](/images/lab1/004.png)
-
-> ✅ Review the configuration and click **Create function**
+> 🧠 STRIDE helps analyze each system component to uncover potential vulnerabilities.
 
 ---
 
-## Write and Edit Code
+## Identifying container attack surfaces
 
-Once the function is created:
+When deploying containerized applications, you must identify exploitable points, such as:
 
-![Create Lambda](/images/lab1/005.png)
-
-1. Scroll down to the **Function code** section  
-2. You can edit the code directly in the inline editor
-
-![Create Lambda](/images/lab1/006.png)
+- **Container Image:** may contain CVEs or malware  
+- **Registry:** unprotected → vulnerable to unauthorized push/pull  
+- **Kubernetes API:** can be attacked via misconfigured RBAC  
+- **Pods running as root:** increase escalation risks  
+- **Sensitive information:** hardcoded secrets or ENV vars  
 
 ---
 
-## Test Lambda Function
+## Drawing a threat model diagram
 
-Click the **Test** button, or press `CTRL + SHIFT + I`, then choose **Create new test event**.
+You can use the following tools for visualization:
 
-- Event Name: enter `test1`
-- Event JSON: input `{"name":"Tun"}`
+- ✏️ [Draw.io](https://draw.io)  
+- 🔐 [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/security/blog/2020/11/18/threat-modeling-tool-updates/)
 
-![Create Lambda](/images/lab1/007.png)  
-![Create Lambda](/images/lab1/008.png)
+👉 The diagram should include:
 
-Then click the **Test** button again to execute the function and see the result.
+- Users (e.g., developers, attackers)  
+- Components: registry, CI/CD, cluster, pods, secrets, DB  
+- Annotations of potential STRIDE threats at each point  
 
-![Create Lambda](/images/lab1/009.png)
+📸 *Take a screenshot of your threat model diagram to include in workshop materials.*
+
+---
+
+## Hands-on threat modeling for a containerized app
+
+1. Choose a containerized application to be deployed in the next lab (e.g., nginx + flask + mongo)  
+2. Analyze each step: from build → deploy → runtime → networking  
+3. List threats using STRIDE and provide mitigation actions
+
+| Step        | Threat (STRIDE)       | Mitigation                                 |
+|-------------|------------------------|---------------------------------------------|
+| Push image  | Tampering              | Sign images, use a private registry         |
+| Run pod     | Elevation of Privilege | Avoid root, drop unnecessary capabilities   |
+| Connect DB  | Information Disclosure | Use NetworkPolicy, avoid exposing DB        |
+
+---
+
+📘 **Expected outcomes:**
+
+- Understand common container security threats  
+- Be able to model threats for your own application  
+- Produce a threat model diagram ready to include in the workshop

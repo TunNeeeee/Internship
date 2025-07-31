@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Giới thiệu AWS Lambda :: Tạo mới tài khoản AWS</title>
+    <title>Củng cố bảo mật Container và bảo vệ khi chạy (Runtime Protection) :: Tạo mới tài khoản AWS</title>
 
     
-    <link href="/css/nucleus.css?1751971532" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1751971532" rel="stylesheet">
-    <link href="/css/hybrid.css?1751971532" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1751971532" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1751971532" rel="stylesheet">
-    <link href="/css/auto-complete.css?1751971532" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1751971532" rel="stylesheet">
-    <link href="/css/theme.css?1751971532" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1751971532" rel="stylesheet">
+    <link href="/css/nucleus.css?1753975544" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753975544" rel="stylesheet">
+    <link href="/css/hybrid.css?1753975544" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753975544" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753975544" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753975544" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753975544" rel="stylesheet">
+    <link href="/css/theme.css?1753975544" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753975544" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1751971532" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1753975544" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1751971532"></script>
+    <script src="/js/jquery-3.3.1.min.js?1753975544"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1751971532"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1751971532"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1753975544"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753975544"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1751971532"></script>
+<script type="text/javascript" src="/js/search.js?1753975544"></script>
 
     
   </div>
@@ -270,18 +270,114 @@
  
   
     
-    <li data-nav-id="/vi/3-container-security-hardening/" title="Tạo Admin Group và Admin User" class="dd-item 
+    <li data-nav-id="/vi/3-container-security-hardening/" title="Tăng cường an ninh Container" class="dd-item 
         
         
         
         ">
       <a href="/vi/3-container-security-hardening/">
-           <b> 3. </b> Tạo Admin Group và Admin User
+          <b> 3. </b>Tăng cường an ninh Container
           
             <i class="fas fa-check read-icon"></i>
           
       </a>
       
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-container-security-hardening/1-image-scanning-with-trivy/" title="Quét lỗ hổng container image bằng Trivy (qua Docker)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-container-security-hardening/1-image-scanning-with-trivy/">
+          <b> 3.1 </b>Quét lỗ hổng container image bằng Trivy (qua Docker)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-container-security-hardening/2-cis-benchmark-with-kubebench/" title="Kiểm tra tuân thủ CIS Benchmark với kube-bench" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-container-security-hardening/2-cis-benchmark-with-kubebench/">
+          <b> 3.2 </b>Kiểm tra tuân thủ CIS Benchmark với kube-bench
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/3-container-security-hardening/3-network-policy/" title="Áp dụng NetworkPolicy trong Kubernetes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/3-container-security-hardening/3-network-policy/">
+          <b> 3.3 </b>Áp dụng NetworkPolicy trong Kubernetes
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
               
     </li>
   
@@ -308,6 +404,224 @@
           
       </a>
       
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/" title="Quản lý chính sách với OPA Gatekeeper (Windows)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/">
+          <b> 4.1 </b>Quản lý chính sách với OPA Gatekeeper (Windows)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/" title="Giám sát runtime với Falco (Windows)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/">
+          <b> 4.2 </b>Giám sát runtime với Falco (Windows)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-policy-enforcement-and-runtime-protection/3-automated-remediation/" title="Tự động phản ứng với vi phạm bằng Falcosidekick" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-policy-enforcement-and-runtime-protection/3-automated-remediation/">
+           4.3 Tự động phản ứng với vi phạm bằng Falcosidekick
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-security-monitoring-and-response/" title="Quản lý chính sách với OPA Gatekeeper (Windows)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-security-monitoring-and-response/">
+          <b> 5 </b>Quản lý chính sách với OPA Gatekeeper (Windows)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-security-monitoring-and-response/1-logging-with-cloudwatch/" title="Ghi log container vào CloudWatch với Fluent Bit" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-security-monitoring-and-response/1-logging-with-cloudwatch/">
+           5.1 Ghi log container vào CloudWatch với Fluent Bit
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-security-monitoring-and-response/2-security-dashboard/" title="Security Dashboard - Giám sát bảo mật EKS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-security-monitoring-and-response/2-security-dashboard/">
+           5.2 Security Dashboard - Giám sát bảo mật EKS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-security-monitoring-and-response/3-penetration-testing/" title="Kiểm tra thâm nhập" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-security-monitoring-and-response/3-penetration-testing/">
+          5.3Kiểm tra thâm nhập
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
               
     </li>
   
@@ -444,82 +758,30 @@
 </span>
 
  
-<h1 id="giới-thiệu-aws-lambda">Giới thiệu AWS Lambda</h1>
-<h4 id="tổng-quan">Tổng quan</h4>
-<p>Trong bài lab này, bạn sẽ tìm hiểu về dịch vụ <strong>AWS Lambda</strong>, một trong những dịch vụ quan trọng nhất trong hệ sinh thái AWS giúp bạn chạy mã mà không cần quản lý máy chủ. Bạn sẽ nắm được khái niệm Lambda là gì, khi nào nên sử dụng và cách Lambda được kích hoạt (trigger). Ngoài ra, phần này cũng cung cấp tổng quan về cách <strong>AWS Lambda tính phí</strong> – điều rất quan trọng khi bạn triển khai thực tế.</p>
+<h2 id="-giới-thiệu">🔐 Giới thiệu</h2>
+<p>Trong phần này, bạn sẽ tìm hiểu cách <strong>củng cố (hardening)</strong> môi trường container nhằm giảm thiểu rủi ro bảo mật, đồng thời áp dụng các kỹ thuật <strong>giám sát và bảo vệ ở thời điểm runtime</strong> để phát hiện và phản ứng kịp thời với các hành vi bất thường.</p>
+<p>Khi ứng dụng đã chạy, container vẫn có thể là mục tiêu tấn công nếu không có lớp bảo vệ phù hợp. Do đó, việc kết hợp cả <strong>biện pháp chủ động (hardening)</strong> và <strong>biện pháp phản ứng (runtime detection)</strong> là cực kỳ quan trọng.</p>
 <hr>
-<h4 id="aws-lambda-là-gì">AWS Lambda là gì?</h4>
-<p><strong>AWS Lambda</strong> là một dịch vụ <strong>serverless computing</strong> do Amazon Web Services cung cấp. Bạn chỉ cần <strong>viết code</strong>, chọn ngôn ngữ (Python, Node.js, Java, v.v.), triển khai và AWS sẽ tự động:</p>
+<h2 id="-nội-dung-bạn-sẽ-học">🧩 Nội dung bạn sẽ học</h2>
 <ul>
-<li>Cấp phát tài nguyên (compute)</li>
-<li>Quản lý hệ điều hành, bảo mật</li>
-<li>Scale tự động</li>
-<li>Theo dõi và log hoạt động</li>
+<li>Những cấu hình nên áp dụng để harden container và Kubernetes Pod (user, capabilities, readonlyRootFilesystem, seccomp, apparmor…)</li>
+<li>Sử dụng công cụ như <strong>Trivy</strong> để kiểm tra lỗ hổng trước khi triển khai</li>
+<li>Cài đặt và cấu hình <strong>Falco</strong> để phát hiện các hành vi bất thường trong container</li>
+<li>Mô phỏng và phân tích các cuộc tấn công thời gian thực</li>
+<li>Áp dụng các policy runtime để giảm thiểu rủi ro khi container bị khai thác</li>
 </ul>
-<p>Lambda phù hợp cho các tác vụ nhỏ, đơn lẻ, không cần máy chủ chạy 24/7.</p>
-<p><img alt="AWS Lambda Service Overview" src="/images/lambda/lambda-overview.png?featherlight=false&width=90pc"></p>
-
-<div class="notices info" ><p>Lambda là một dịch vụ dạng <strong>event-driven</strong>, nghĩa là chỉ khi có sự kiện xảy ra (trigger), mã của bạn mới chạy.</p>
-</div>
-
 <hr>
-<h4 id="khi-nào-nên-dùng-lambda">Khi nào nên dùng Lambda?</h4>
-<p>Bạn nên cân nhắc sử dụng AWS Lambda trong các tình huống:</p>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Tình huống</th>
-          <th style="text-align: left">Lý do phù hợp</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Xử lý ảnh sau khi upload lên S3</td>
-          <td style="text-align: left">Trigger từ S3, xử lý ảnh rồi lưu lại</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Gửi email tự động khi có sự kiện</td>
-          <td style="text-align: left">Kết hợp với SNS, SES, hoặc EventBridge</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Backend nhỏ cho REST API</td>
-          <td style="text-align: left">Tích hợp với API Gateway</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Định kỳ kiểm tra/tự động hóa</td>
-          <td style="text-align: left">Tạo cron job bằng EventBridge</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Nhận và xử lý tin nhắn</td>
-          <td style="text-align: left">Từ SQS, SNS, DynamoDB Streams hoặc Kinesis</td>
-      </tr>
-  </tbody>
-</table>
-<hr>
-<h4 id="cơ-chế-trigger-của-lambda">Cơ chế Trigger của Lambda</h4>
-<p>Một Lambda function sẽ chỉ thực thi khi có <strong>trigger</strong> xảy ra từ các dịch vụ khác hoặc bạn gọi trực tiếp nó.</p>
-<h5 id="-một-số-nguồn-trigger-phổ-biến">🔄 Một số nguồn trigger phổ biến:</h5>
+<h2 id="-kết-quả-mong-đợi">🎯 Kết quả mong đợi</h2>
+<p>Sau khi hoàn thành phần này, bạn sẽ:</p>
 <ul>
-<li><strong>Amazon S3</strong>: khi có object được upload/xóa</li>
-<li><strong>API Gateway</strong>: khi người dùng gọi REST API</li>
-<li><strong>DynamoDB Streams</strong>: khi có dữ liệu được ghi vào bảng</li>
-<li><strong>CloudWatch Events / EventBridge</strong>: kích hoạt định kỳ</li>
-<li><strong>SNS / SQS</strong>: khi có tin nhắn mới</li>
+<li>Biết cách thiết lập cấu hình bảo mật chuẩn cho container/POD</li>
+<li>Hiểu vai trò của các công cụ giám sát và phát hiện như Falco</li>
+<li>Có khả năng triển khai hệ thống bảo vệ runtime trong môi trường thực tế</li>
+<li>Nhận diện sớm các hành vi đáng ngờ và đưa ra phản ứng phù hợp</li>
 </ul>
-
-<div class="notices tip" ><p>Trigger giúp bạn xây dựng hệ thống <strong>phản ứng tự động</strong> mà không cần polling hay cron server phức tạp.</p>
-</div>
-
 <hr>
-<h4 id="cách-tính-chi-phí-pricing">Cách tính chi phí (Pricing)</h4>
-<p>Lambda tính chi phí theo <strong>2 yếu tố chính</strong>:</p>
-<ol>
-<li><strong>Số lần gọi function</strong></li>
-<li><strong>Thời gian chạy và bộ nhớ cấp phát</strong></li>
-</ol>
-<h5 id="-công-thức-tính">🎯 Công thức tính:</h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Giá = (thời gian chạy tính theo mili giây) × (bộ nhớ) × (số lượt gọi)
-</span></span></code></pre></div>	
+<p>🚀 <em>Hãy sẵn sàng củng cố môi trường container của bạn trước các mối đe doạ thực tế!</em></p>
+	
   
         
         </div> 
@@ -660,6 +922,37 @@
 
                     
                     
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                     
 
                     
@@ -684,6 +977,141 @@
                     
             
         
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
         
         
 
@@ -702,19 +1130,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1751971532"></script>
-    <script src="/js/perfect-scrollbar.min.js?1751971532"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1751971532"></script>
-    <script src="/js/jquery.sticky.js?1751971532"></script>
-    <script src="/js/featherlight.min.js?1751971532"></script>
-    <script src="/js/highlight.pack.js?1751971532"></script>
+    <script src="/js/clipboard.min.js?1753975544"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753975544"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753975544"></script>
+    <script src="/js/jquery.sticky.js?1753975544"></script>
+    <script src="/js/featherlight.min.js?1753975544"></script>
+    <script src="/js/highlight.pack.js?1753975544"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1751971532"></script>
-    <script src="/js/learn.js?1751971532"></script>
-    <script src="/js/hugo-learn.js?1751971532"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753975544"></script>
+    <script src="/js/learn.js?1753975544"></script>
+    <script src="/js/hugo-learn.js?1753975544"></script>
 
-    <link href="/mermaid/mermaid.css?1751971532" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1751971532"></script>
+    <link href="/mermaid/mermaid.css?1753975544" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753975544"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

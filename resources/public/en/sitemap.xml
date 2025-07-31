@@ -41,6 +41,18 @@
                 href="//localhost:1313/1-intro-to-container-security/"
                 />
   </url><url>
+    <loc>//localhost:1313/5-security-monitoring-and-response/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/5-security-monitoring-and-response/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/5-security-monitoring-and-response/"
+                />
+  </url><url>
     <loc>//localhost:1313/2-setup-aws-eks/1-create-eks-cluster/</loc>
     <xhtml:link
                 rel="alternate"
@@ -112,6 +124,114 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/4-policy-enforcement-and-runtime-protection/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-container-security-hardening/1-image-scanning-with-trivy/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-container-security-hardening/1-image-scanning-with-trivy/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-container-security-hardening/1-image-scanning-with-trivy/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-container-security-hardening/2-cis-benchmark-with-kubebench/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-container-security-hardening/2-cis-benchmark-with-kubebench/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-container-security-hardening/2-cis-benchmark-with-kubebench/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-container-security-hardening/3-network-policy/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-container-security-hardening/3-network-policy/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-container-security-hardening/3-network-policy/"
+                />
+  </url><url>
+    <loc>//localhost:1313/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/"
+                />
+  </url><url>
+    <loc>//localhost:1313/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/"
+                />
+  </url><url>
+    <loc>//localhost:1313/4-policy-enforcement-and-runtime-protection/3-automated-remediation/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-policy-enforcement-and-runtime-protection/3-automated-remediation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-policy-enforcement-and-runtime-protection/3-automated-remediation/"
+                />
+  </url><url>
+    <loc>//localhost:1313/5-security-monitoring-and-response/1-logging-with-cloudwatch/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/5-security-monitoring-and-response/1-logging-with-cloudwatch/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/5-security-monitoring-and-response/1-logging-with-cloudwatch/"
+                />
+  </url><url>
+    <loc>//localhost:1313/5-security-monitoring-and-response/2-security-dashboard/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/5-security-monitoring-and-response/2-security-dashboard/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/5-security-monitoring-and-response/2-security-dashboard/"
+                />
+  </url><url>
+    <loc>//localhost:1313/5-security-monitoring-and-response/3-penetration-testing/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/5-security-monitoring-and-response/3-penetration-testing/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/5-security-monitoring-and-response/3-penetration-testing/"
                 />
   </url><url>
     <loc>//localhost:1313/categories/</loc>

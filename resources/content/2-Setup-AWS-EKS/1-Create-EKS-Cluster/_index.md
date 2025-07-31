@@ -1,63 +1,150 @@
 ---
-title : "Virtual MFA Device"
-date : "`r Sys.Date()`"
-weight : 1
-chapter : false
-pre : " <b> 2.1 </b> "
+title: "Creating EKS Cluster on AWS"
+date: 2025-07-07
+weight: 1
+chapter: false
+pre: "<b> 2.1 </b>"
 ---
 
-## Enabling Multi-Factor Authentication (MFA) on AWS
+**Main Content:**
 
-**Note:** Before proceeding, ensure you are logged in to AWS using the root user.
+- [Step 1: Install tools on Windows](#step-1-install-tools-on-windows)
+- [Step 2: Create cluster configuration file](#step-2-create-cluster-configuration-file)
+- [Step 3: Create cluster using command](#step-3-create-cluster-using-command)
+- [Step 4: Verify connection with kubectl](#step-4-verify-connection-with-kubectl)
+- [Notes and Important Points](#notes-and-important-points)
 
-## Enable Virtual MFA Device through AWS Management Console
+---
 
-To enhance the security of your AWS account, you can set up Multi-Factor Authentication (MFA). This adds an extra layer of protection by requiring a second form of verification in addition to your password. Follow these steps to set up and activate a virtual MFA device:
+## Step 1: Install tools on Windows
 
-1. Sign in to the AWS Management Console.
+1. **AWS CLI**
+   Visit: [https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html) → Download the `.msi` file and install it like any regular software. Then open **CMD** and verify:
+   ```powershell
+   aws --version
+   ```
+   If the version appears, the installation was successful.
 
-2. In the upper right corner of the console, you will see your account name. Click on it and select **My Security Credentials**.
+   ⚙️ Configure AWS account:
+   - Create IAM USER
+   - Create Access keys/Secret Access Key
+   - Open PowerShell
+   ```powershell
+   aws configure
+   ```
+   - Then enter the following information:
+     - AWS Access Key ID
+     - AWS Secret Access Key
+     - Region: ap-southeast-1
+     - Output format: json
 
-   ![My Security Credentials](/images/2/0001.png?featherlight=false&width=90pc)
+2. **Install kubectl**
+   Visit the official link: 👉 https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+   Or use choco if you have Chocolatey installed:
+   ```powershell
+   choco install kubernetes-cli
+   ```
+   Verify the installation:
+   ```powershell
+   kubectl version --client
+   ```
 
-3. Expand the **Multi-factor authentication (MFA)** section and select **Assign MFA**.
+3. **Install eksctl**
+   Visit: 👉 https://eksctl.io/introduction/#installation
+   Download the .exe file → Rename it to eksctl.exe and:
+   - Copy to a directory like C:\Program Files\eksctl
+   - Add that directory to Environment Variables > PATH
 
-   ![Assign MFA](/images/2/0002.png?featherlight=false&width=90pc)
+   Or use choco if you have Chocolatey installed:
+   ```powershell
+   choco install eksctl
+   ```
+   - Verify the installation:
+   ```powershell
+   eksctl version
+   ```
 
-4. In the **Select MFA Device** interface:
+## Step 2: Create cluster configuration file
 
-   - Enter a **Device Name**.
-   - Select **MFA Device** as the **Authenticator App**.
-   - Select **Next**.
+Open Notepad or VS Code, create a file named eks-cluster.yaml with the following content:
 
-   ![Select MFA Device](/images/2/0003.png?featherlight=false&width=90pc)
+```yaml
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
 
-5. Install a compatible authenticator app on your smartphone. You can find a list of [MFA-compatible apps here](https://aws.amazon.com/iam/features/mfa/?audit=2019q1).
+metadata:
+  name: secure-eks
+  region: ap-southeast-1
 
-   ![MFA App List](/images/2/0004.png?featherlight=false&width=90pc)
+nodeGroups:
+  - name: ng-1
+    instanceType: t3.medium
+    desiredCapacity: 2
+    ssh:
+      allow: true
+```
 
-6. Install the authenticator extension for Google Chrome. Select **Add to Chrome**.
+Save it in the same directory where you'll open the terminal later.
 
-   ![Authenticator Extension](/images/2/0005.png?featherlight=false&width=90pc)
+## Step 3: Create cluster using command
 
-7. Use the authenticator app to generate an MFA code and enter it for confirmation.
+Open PowerShell or terminal in VS Code, navigate to the directory containing the eks-cluster.yaml file, then run:
 
-   ![MFA Code](/images/2/0006.png?featherlight=false&width=90pc)
+```bash
+eksctl create cluster -f eks-cluster.yaml
+```
 
-8. Perform a QR code scan using the authenticator app.
+You might encounter this error: Error: cannot find EC2 key pair "~/.ssh/id_rsa.pub"
 
-   ![QR Code Scan](/images/2/0007.png?featherlight=false&width=90pc)
+💡 Cause: In the eks-cluster.yaml configuration file, you have enabled SSH for the node group:
 
-9. After scanning the QR code, enter the generated MFA codes into the corresponding fields.
+```yaml
+ssh:
+  allow: true
+```
 
-   ![Enter MFA Codes](/images/2/0008.png?featherlight=false&width=90pc)
+When allow: true, eksctl will try to find the ~/.ssh/id_rsa.pub file to use as the SSH key pair – but you haven't created this key on your Windows machine yet.
 
-10. Once the codes are entered, select **Add MFA** to complete the setup.
+You need to manually create the SSH key pair. Open PowerShell and run:
 
-   ![Add MFA](/images/2/0009.png?featherlight=false&width=90pc)
+```powershell
+ssh-keygen
+```
 
-11. Complete the additional MFA setup steps as prompted.
+Press Enter repeatedly to accept the default path (C:\Users\<username>\.ssh\id_rsa)
 
-   ![Additional MFA Setup](/images/2/00010.png?featherlight=false&width=90pc)
+Then verify the file:
 
-By setting up Multi-Factor Authentication, you add an extra layer of security to your AWS account, helping to protect your valuable resources and data.
+```powershell
+type $env:USERPROFILE\.ssh\id_rsa.pub
+```
+
+Run the cluster creation command again:
+
+```bash
+eksctl create cluster -f eks-cluster.yaml
+```
+
+📌 eksctl will automatically use the id_rsa.pub file and create the corresponding key pair in AWS EC2.
+
+⏳ The creation process may take 10–15 minutes. eksctl will create: VPC, IAM role, Security Group, Control Plane, EC2 Nodes...
+
+## Step 4: Verify connection with kubectl
+
+After the cluster is created, verify the connection:
+
+```bash
+kubectl get nodes
+```
+
+✅ You should see 2 worker nodes running – EKS is ready to use!
+
+📸 Take a screenshot of the terminal results to use in your workshop report.
+
+## Notes and Important Points
+
+- eksctl will automatically create VPC and node groups if they don't exist
+- It's recommended to use region ap-southeast-1 (Singapore) if you're in Vietnam to reduce latency
+- The cluster creation process is fully automated through eksctl
+- Make sure your AWS credentials have sufficient permissions to create EKS resources
+- Keep your SSH keys secure as they provide access to your worker nodes

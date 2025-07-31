@@ -1,84 +1,123 @@
 ---
-title : "U2F Security Key"
-date : "`r Sys.Date()`"
-weight : 2
-chapter : false
-pre : " <b> 2.2 </b> "
+
+title: "Deploy Sample Workload on EKS"
+date: 2025-07-07
+weight: 2
+chapter: false
+pre: "<b> 2.2 </b>"
+
 ---
 
-**Content**
-- [Enable U2F security key via Console](#enable-u2f-security-key-via-console)
+### Table of Contents
 
+* [Create a separate namespace for the demo](#create-a-separate-namespace-for-the-demo)
+* [Deploy nginx and backend applications](#deploy-nginx-and-backend-applications)
+* [Verify connectivity and prepare for upcoming labs](#verify-connectivity-and-prepare-for-upcoming-labs)
 
-{{%notice tip%}}
-If you do not have a hardware device, you can skip the steps below.
-{{%/notice%}}
+---
 
-#### Enable U2F security key via Console
+### Create a separate namespace for the demo
 
-U2F Security Key is an open authentication protocol that allows users to access online services with a unique security key without using any software.
+Namespaces help isolate resources between different applications. First, create a namespace named `demo`:
 
-1. Sign in to the AWS Console.
-2. In the upper right corner, you will see your account name, select and select **My Security Credentials** then expand Multi-factor authentication (MFA).
+```bash
+kubectl create namespace demo
+```
+📸 Output:
 
-3. To manage U2F security keys, you must have permissions from the following set of permissions. in the left sidebar, select **Policies** then select **Create policy**, select **JSON** tab and paste the below:
+![Create Namespace Demo](/images/2.2/2.2.1.png)
 
+Then verify the namespace:
 
-```js
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "AllowManageOwnUserMFA",
-            "Effect": "Allow",
-            "Action": [
-                "iam:DeactivateMFADevice",
-                "iam:EnableMFADevice",
-                "iam:GetUser",
-                "iam:ListMFADevices",
-                "iam:ResyncMFADevice"
-            ],
-            "Resource": "arn:aws:iam::*:user/${aws:username}"
-        },
-        {
-            "Sid": "DenyAllExceptListedIfNoMFA",
-            "Effect": "Deny",
-            "NotAction": [
-                "iam:EnableMFADevice",
-                "iam:GetUser",
-                "iam:ListMFADevices",
-                "iam:ResyncMFADevice"
-            ],
-            "Resource": "arn:aws:iam::*:user/${aws:username}",
-            "Condition": {
-                "BoolIfExists": {
-                    "aws:MultiFactorAuthPresent": "false"
-                }
-            }
-        }
-    ]
-}
+```bash
+kubectl get ns
 ```
 
-![MFA](/images/3/0001.png?featherlight=false&width=90pc)
+📸 Output:
 
-4. Select **Next: Tags**. This is a screen of **Tags**, a tool used to differentiate AWS resources.
-5. Select **Next: Review**. This is the screen that allows you to review the permission set you are creating.
-6. Enter the permission set name (eg MFAHardDevice) and select **Create policy**.
+![kubectl get ns](/images/2.2/2.2.2.png)
 
-![MFA](/images/3/0002.png?featherlight=false&width=90pc)
+---
 
-![MFA](/images/3/0003.png?featherlight=false&width=90pc)
+### Deploy nginx and backend applications
+The sample workload consists of two Pods:
 
-7. In the left sidebar, select **Dashboard** and then select **Enable MFA**.
+nginx (used as frontend)
 
-![MFA](/images/3/0004.png?featherlight=false&width=90pc)
+http-echo (used as backend)
 
-8. Expand Multi-factor authentication (MFA) then select **Active MFA**.
+Create a file named `demo-app.yaml` with the following content:
 
-9. In **Manage MFA Device**, select **U2F security key** then press **Continue**.
-10. Plug the U2F security key into the computer's USB port.
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: demo
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend
+  namespace: demo
+spec:
+  containers:
+    - name: backend
+      image: hashicorp/http-echo
+      args:
+        - "-text=Hello from backend"
+      ports:
+        - containerPort: 5678
+```
 
-![Image](/images/1-account-setup/U2FSK.png?featherlight=false&width=90pc)
+▶️ Apply the configuration:
 
-11. Click the U2F security key, and then select **Close** when U2F is successfully set up.
+```bash
+kubectl apply -f demo-app.yaml
+```
+
+📸 Output after applying:
+
+![kubectl apply demo-app](/images/2.2/2.2.3.png)
+
+---
+
+### Verify connectivity and prepare for upcoming labs
+Run the following command to check the status of the Pods:
+
+```bash
+kubectl get pods -n demo
+```
+
+📸 Output:
+
+![kubectl get pods -n demo](/images/2.2/2.2.4.png)
+
+✅ You should see both nginx and backend Pods in Running state.
+
+> This sample workload will be used throughout the upcoming labs such as: NetworkPolicy, Falco, OPA, etc.
+
+---
+
+### Optional: Expose nginx externally
+
+To access the nginx pod from outside (e.g., via browser or curl), you can expose it using a LoadBalancer service:
+
+```bash
+kubectl expose pod nginx --port=80 --type=LoadBalancer -n demo
+```
+
+Notes:
+
+* This command will create a Service with a public IP (if running on a cloud platform like EKS).
+* You can retrieve the access URL using: kubectl get svc -n demo.
+
+---
+
+🎉 **You have successfully deployed a sample workload – ready for the next security-focused labs!**

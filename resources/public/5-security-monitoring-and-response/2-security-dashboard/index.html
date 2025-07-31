@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.134.3">
+    <meta name="description" content="">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Security Dashboard - EKS Security Monitoring :: Create a new AWS account.</title>
+
+    
+    <link href="/css/nucleus.css?1753977789" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1753977789" rel="stylesheet">
+    <link href="/css/hybrid.css?1753977789" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1753977789" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1753977789" rel="stylesheet">
+    <link href="/css/auto-complete.css?1753977789" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1753977789" rel="stylesheet">
+    <link href="/css/theme.css?1753977789" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1753977789" rel="stylesheet">
+    
+    <link href="/css/theme-workshop.css?1753977789" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1753977789"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/5-security-monitoring-and-response/2-security-dashboard/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1753977789"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1753977789"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1753977789"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-intro-to-container-security/" title="Introduction to Container Security" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-intro-to-container-security/">
+          <b> 1. </b>Introduction to Container Security
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-intro-to-container-security/1-overview/" title="Overview of Container Security" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-intro-to-container-security/1-overview/">
+          <b> 1.1 </b>Overview of Container Security
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/1-intro-to-container-security/2-threat-modeling/" title="Threat Modeling" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/1-intro-to-container-security/2-threat-modeling/">
+          <b> 1.2 </b>Threat Modeling
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-setup-aws-eks/" title="Provisioning an EKS Cluster on AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-setup-aws-eks/">
+          <b> 2. </b>Provisioning an EKS Cluster on AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-setup-aws-eks/1-create-eks-cluster/" title="Creating EKS Cluster on AWS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-setup-aws-eks/1-create-eks-cluster/">
+          <b> 2.1 </b>Creating EKS Cluster on AWS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/2-setup-aws-eks/2-deploy-demo-workloads/" title="Deploy Sample Workload on EKS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/2-setup-aws-eks/2-deploy-demo-workloads/">
+          <b> 2.2 </b>Deploy Sample Workload on EKS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-container-security-hardening/" title="Container Security Hardening" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-container-security-hardening/">
+          <b> 3. </b>Container Security Hardening
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-container-security-hardening/1-image-scanning-with-trivy/" title="Container Image Vulnerability Scanning with Trivy (via Docker)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-container-security-hardening/1-image-scanning-with-trivy/">
+          <b> 3.1 </b>Container Image Vulnerability Scanning with Trivy (via Docker)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-container-security-hardening/2-cis-benchmark-with-kubebench/" title="CIS Benchmark Compliance Check with kube-bench" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-container-security-hardening/2-cis-benchmark-with-kubebench/">
+          <b> 3.2 </b>CIS Benchmark Compliance Check with kube-bench
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/3-container-security-hardening/3-network-policy/" title="Implementing NetworkPolicy in Kubernetes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/3-container-security-hardening/3-network-policy/">
+          <b> 3.3 </b>Implementing NetworkPolicy in Kubernetes
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-policy-enforcement-and-runtime-protection/" title="Policy Enforcement &amp; Runtime Protection" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-policy-enforcement-and-runtime-protection/">
+          <b> 4. </b>Policy Enforcement &amp; Runtime Protection
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/" title="Policy Management with OPA Gatekeeper (Windows)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-policy-enforcement-and-runtime-protection/1-opa-gatekeeper/">
+          <b> 4.1 </b>Policy Management with OPA Gatekeeper (Windows)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/" title="Runtime Monitoring with Falco (Windows)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-policy-enforcement-and-runtime-protection/2-falco-setup-and-rule/">
+          <b> 4.2 </b>Runtime Monitoring with Falco (Windows)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-policy-enforcement-and-runtime-protection/3-automated-remediation/" title="Automated Response to Violations with Falcosidekick" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-policy-enforcement-and-runtime-protection/3-automated-remediation/">
+           4.3 Automated Response to Violations with Falcosidekick
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-security-monitoring-and-response/" title="Security Monitoring &amp; Response" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/5-security-monitoring-and-response/">
+          <b>5. </b>Security Monitoring &amp; Response
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-security-monitoring-and-response/1-logging-with-cloudwatch/" title="Container Logging to CloudWatch with Fluent Bit" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-security-monitoring-and-response/1-logging-with-cloudwatch/">
+           5.1 Container Logging to CloudWatch with Fluent Bit
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-security-monitoring-and-response/2-security-dashboard/" title="Security Dashboard - EKS Security Monitoring" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="/5-security-monitoring-and-response/2-security-dashboard/">
+           5.2 Security Dashboard - EKS Security Monitoring
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-security-monitoring-and-response/3-penetration-testing/" title=" Penetration Testing" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-security-monitoring-and-response/3-penetration-testing/">
+          5.3 Penetration Testing
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://aws.amazon.com/blogs"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="//localhost:1313/5-security-monitoring-and-response/2-security-dashboard/" selected>English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="//localhost:1313/vi/5-security-monitoring-and-response/2-security-dashboard/">Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830891&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>26-11-2023</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Gia Hưng</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Container Security Hardening and Runtime Protection</a> > <a href='/5-security-monitoring-and-response/'>Security Monitoring & Response</a> > Security Dashboard - EKS Security Monitoring
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#main-content">Main Content</a></li>
+    <li><a href="#security-dashboard-overview">Security Dashboard Overview</a>
+      <ul>
+        <li><a href="#architecture-overview">Architecture Overview:</a></li>
+      </ul>
+    </li>
+    <li><a href="#setting-up-amazon-guardduty">Setting up Amazon GuardDuty</a>
+      <ul>
+        <li><a href="#enable-guardduty-for-eks">Enable GuardDuty for EKS</a></li>
+        <li><a href="#configure-guardduty-findings-processor">Configure GuardDuty findings processor</a></li>
+      </ul>
+    </li>
+    <li><a href="#configuring-aws-config-rules">Configuring AWS Config Rules</a>
+      <ul>
+        <li><a href="#deploy-eks-config-rules">Deploy EKS Config Rules</a></li>
+        <li><a href="#custom-config-rule-for-pod-security">Custom Config Rule for Pod Security</a></li>
+      </ul>
+    </li>
+    <li><a href="#integrating-cloudwatch-security-dashboard">Integrating CloudWatch Security Dashboard</a>
+      <ul>
+        <li><a href="#create-security-dashboard">Create Security Dashboard</a></li>
+        <li><a href="#deploy-dashboard">Deploy Dashboard</a></li>
+      </ul>
+    </li>
+    <li><a href="#alerting-and-automation">Alerting and Automation</a>
+      <ul>
+        <li><a href="#create-cloudwatch-alarms">Create CloudWatch Alarms</a></li>
+        <li><a href="#automated-response">Automated Response</a></li>
+        <li><a href="#create-sns-topic-and-subscription">Create SNS Topic and Subscription</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Security Dashboard - EKS Security Monitoring
+            </h1>
+          
+
+        
+
+
+
+	<h2 id="main-content">Main Content</h2>
+<ul>
+<li><a href="/5-security-monitoring-and-response/2-security-dashboard/#security-dashboard-overview">Security Dashboard Overview</a></li>
+<li><a href="/5-security-monitoring-and-response/2-security-dashboard/#setting-up-amazon-guardduty">Setting up Amazon GuardDuty</a></li>
+<li><a href="/5-security-monitoring-and-response/2-security-dashboard/#configuring-aws-config-rules">Configuring AWS Config Rules</a></li>
+<li><a href="/5-security-monitoring-and-response/2-security-dashboard/#integrating-cloudwatch-security-dashboard">Integrating CloudWatch Security Dashboard</a></li>
+<li><a href="/5-security-monitoring-and-response/2-security-dashboard/#alerting-and-automation">Alerting and Automation</a></li>
+</ul>
+<hr>
+<h2 id="security-dashboard-overview">Security Dashboard Overview</h2>
+<p>Security Dashboard consolidates security information from multiple sources to provide a comprehensive view of the EKS cluster&rsquo;s security posture.</p>
+<h3 id="architecture-overview">Architecture Overview:</h3>
+<pre tabindex="0"><code>EKS Cluster ──→ GuardDuty ──→ Security Hub ──→ CloudWatch Dashboard
+     │              │              │              │
+     ├─→ Config ─────┤              │              │
+     └─→ Falco ──────┴──────────────┘              │
+                                                   │
+SNS Alerts ←───────────────────────────────────────┘
+</code></pre><hr>
+<h2 id="setting-up-amazon-guardduty">Setting up Amazon GuardDuty</h2>
+<h3 id="enable-guardduty-for-eks">Enable GuardDuty for EKS</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable GuardDuty</span>
+</span></span><span style="display:flex;"><span>aws guardduty create-detector --enable
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get detector ID</span>
+</span></span><span style="display:flex;"><span>DETECTOR_ID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>aws guardduty list-detectors --query <span style="color:#e6db74">&#39;DetectorIds[0]&#39;</span> --output text<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable EKS Protection</span>
+</span></span><span style="display:flex;"><span>aws guardduty update-detector <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --detector-id $DETECTOR_ID <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --kubernetes-audit-logs-configuration Enable<span style="color:#f92672">=</span>true
+</span></span></code></pre></div><h3 id="configure-guardduty-findings-processor">Configure GuardDuty findings processor</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># guardduty-processor.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">guardduty-processor</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">security-monitoring</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">process-findings.py</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    import json
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    import boto3
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    def lambda_handler(event, context):
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        detail = event[&#39;detail&#39;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        finding_type = detail[&#39;type&#39;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        severity = detail[&#39;severity&#39;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        # Process EKS-related findings
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        if &#39;Kubernetes&#39; in finding_type:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            send_to_cloudwatch(detail)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        # Send alert for critical findings
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        if severity &gt;= 7.0:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            send_critical_alert(detail)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        return {&#39;statusCode&#39;: 200}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    def send_to_cloudwatch(finding):
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        cloudwatch = boto3.client(&#39;cloudwatch&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        cloudwatch.put_metric_data(
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Namespace=&#39;EKS/Security&#39;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            MetricData=[{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#39;MetricName&#39;: &#39;SecurityFinding&#39;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#39;Value&#39;: finding[&#39;severity&#39;],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#39;Unit&#39;: &#39;Count&#39;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#39;Dimensions&#39;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    {&#39;Name&#39;: &#39;FindingType&#39;, &#39;Value&#39;: finding[&#39;type&#39;]}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                ]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            }]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        )
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    def send_critical_alert(finding):
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        sns = boto3.client(&#39;sns&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        sns.publish(
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            TopicArn=&#39;arn:aws:sns:ap-southeast-1:ACCOUNT:eks-security-alerts&#39;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Message=f&#34;Critical EKS Security Alert: {finding[&#39;type&#39;]}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Subject=&#39;Critical EKS Security Alert&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        )</span>    
+</span></span></code></pre></div><hr>
+<h2 id="configuring-aws-config-rules">Configuring AWS Config Rules</h2>
+<h3 id="deploy-eks-config-rules">Deploy EKS Config Rules</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable Config</span>
+</span></span><span style="display:flex;"><span>aws configservice put-configuration-recorder <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --configuration-recorder name<span style="color:#f92672">=</span>eks-config-recorder,roleARN<span style="color:#f92672">=</span>arn:aws:iam::ACCOUNT:role/aws-service-role/config.amazonaws.com/AWSServiceRoleForConfig
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create EKS-specific rules</span>
+</span></span><span style="display:flex;"><span>aws configservice put-config-rule <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --config-rule <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;ConfigRuleName&#34;: &#34;eks-cluster-logging-enabled&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;Source&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;Owner&#34;: &#34;AWS&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;SourceIdentifier&#34;: &#34;EKS_CLUSTER_LOGGING_ENABLED&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;InputParameters&#34;: &#34;{\&#34;desiredLogTypes\&#34;:\&#34;api,audit,authenticator\&#34;}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>aws configservice put-config-rule <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --config-rule <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;ConfigRuleName&#34;: &#34;eks-secrets-encrypted&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;Source&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;Owner&#34;: &#34;AWS&#34;, 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;SourceIdentifier&#34;: &#34;EKS_SECRETS_ENCRYPTED&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }&#39;</span>
+</span></span></code></pre></div><h3 id="custom-config-rule-for-pod-security">Custom Config Rule for Pod Security</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># pod-security-rule.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> boto3
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> kubernetes <span style="color:#f92672">import</span> client, config
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lambda_handler</span>(event, context):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Load kubeconfig</span>
+</span></span><span style="display:flex;"><span>    config<span style="color:#f92672">.</span>load_incluster_config()
+</span></span><span style="display:flex;"><span>    v1 <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>CoreV1Api()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check pod security standards</span>
+</span></span><span style="display:flex;"><span>    non_compliant_pods <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    pods <span style="color:#f92672">=</span> v1<span style="color:#f92672">.</span>list_pod_for_all_namespaces()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> pod <span style="color:#f92672">in</span> pods<span style="color:#f92672">.</span>items:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>namespace <span style="color:#f92672">in</span> [<span style="color:#e6db74">&#39;kube-system&#39;</span>, <span style="color:#e6db74">&#39;kube-public&#39;</span>]:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        violations <span style="color:#f92672">=</span> check_pod_security(pod)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> violations:
+</span></span><span style="display:flex;"><span>            non_compliant_pods<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;name&#39;</span>: pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>name,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;namespace&#39;</span>: pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>namespace,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;violations&#39;</span>: violations
+</span></span><span style="display:flex;"><span>            })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Return compliance result</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;complianceType&#39;</span>: <span style="color:#e6db74">&#39;NON_COMPLIANT&#39;</span> <span style="color:#66d9ef">if</span> non_compliant_pods <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#39;COMPLIANT&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;annotation&#39;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Found </span><span style="color:#e6db74">{</span>len(non_compliant_pods)<span style="color:#e6db74">}</span><span style="color:#e6db74"> non-compliant pods&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_pod_security</span>(pod):
+</span></span><span style="display:flex;"><span>    violations <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check if pod runs as root</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> pod<span style="color:#f92672">.</span>spec<span style="color:#f92672">.</span>security_context <span style="color:#f92672">and</span> pod<span style="color:#f92672">.</span>spec<span style="color:#f92672">.</span>security_context<span style="color:#f92672">.</span>run_as_user <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        violations<span style="color:#f92672">.</span>append(<span style="color:#e6db74">&#34;Runs as root user&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check privileged containers</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> container <span style="color:#f92672">in</span> pod<span style="color:#f92672">.</span>spec<span style="color:#f92672">.</span>containers:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> container<span style="color:#f92672">.</span>security_context <span style="color:#f92672">and</span> container<span style="color:#f92672">.</span>security_context<span style="color:#f92672">.</span>privileged:
+</span></span><span style="display:flex;"><span>            violations<span style="color:#f92672">.</span>append(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Container </span><span style="color:#e6db74">{</span>container<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74"> is privileged&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> violations
+</span></span></code></pre></div><hr>
+<h2 id="integrating-cloudwatch-security-dashboard">Integrating CloudWatch Security Dashboard</h2>
+<h3 id="create-security-dashboard">Create Security Dashboard</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;widgets&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;metric&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;metrics&#34;</span>: [
+</span></span><span style="display:flex;"><span>          [<span style="color:#e6db74">&#34;EKS/Security&#34;</span>, <span style="color:#e6db74">&#34;SecurityFinding&#34;</span>, <span style="color:#e6db74">&#34;FindingType&#34;</span>, <span style="color:#e6db74">&#34;Kubernetes.Cluster&#34;</span>],
+</span></span><span style="display:flex;"><span>          [<span style="color:#e6db74">&#34;EKS/Security/Falco&#34;</span>, <span style="color:#e6db74">&#34;SecurityAlert&#34;</span>, <span style="color:#e6db74">&#34;Priority&#34;</span>, <span style="color:#e6db74">&#34;CRITICAL&#34;</span>],
+</span></span><span style="display:flex;"><span>          [<span style="color:#e6db74">&#34;AWS/Config&#34;</span>, <span style="color:#e6db74">&#34;ComplianceByConfigRule&#34;</span>, <span style="color:#e6db74">&#34;ConfigRuleName&#34;</span>, <span style="color:#e6db74">&#34;eks-cluster-logging-enabled&#34;</span>]
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;period&#34;</span>: <span style="color:#ae81ff">300</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;stat&#34;</span>: <span style="color:#e6db74">&#34;Sum&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;region&#34;</span>: <span style="color:#e6db74">&#34;ap-southeast-1&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Security Overview&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;view&#34;</span>: <span style="color:#e6db74">&#34;timeSeries&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;log&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;SOURCE &#39;/aws/eks/security/falco&#39;\n| fields @timestamp, rule, priority, output\n| filter priority = \&#34;CRITICAL\&#34;\n| sort @timestamp desc\n| limit 10&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;region&#34;</span>: <span style="color:#e6db74">&#34;ap-southeast-1&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Recent Critical Alerts&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;view&#34;</span>: <span style="color:#e6db74">&#34;table&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;metric&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;metrics&#34;</span>: [
+</span></span><span style="display:flex;"><span>          [<span style="color:#e6db74">&#34;EKS/Security/Pods&#34;</span>, <span style="color:#e6db74">&#34;PrivilegedPods&#34;</span>, <span style="color:#e6db74">&#34;Namespace&#34;</span>, <span style="color:#e6db74">&#34;demo2&#34;</span>],
+</span></span><span style="display:flex;"><span>          [<span style="color:#e6db74">&#34;.&#34;</span>, <span style="color:#e6db74">&#34;RootContainers&#34;</span>, <span style="color:#e6db74">&#34;.&#34;</span>, <span style="color:#e6db74">&#34;.&#34;</span>]
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;period&#34;</span>: <span style="color:#ae81ff">300</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;stat&#34;</span>: <span style="color:#e6db74">&#34;Average&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;region&#34;</span>: <span style="color:#e6db74">&#34;ap-southeast-1&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Pod Security Metrics&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="deploy-dashboard">Deploy Dashboard</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create dashboard</span>
+</span></span><span style="display:flex;"><span>aws cloudwatch put-dashboard <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --dashboard-name <span style="color:#e6db74">&#34;EKS-Security-Dashboard&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --dashboard-body file://eks-security-dashboard.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create custom metrics for pod security</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f - <span style="color:#e6db74">&lt;&lt;EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">apiVersion: v1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">kind: ServiceAccount
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">metadata:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  name: security-metrics-collector
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  namespace: security-monitoring
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">---
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">apiVersion: rbac.authorization.k8s.io/v1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">kind: ClusterRole
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">metadata:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  name: security-metrics-collector
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">rules:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- apiGroups: [&#34;&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  resources: [&#34;pods&#34;, &#34;namespaces&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  verbs: [&#34;get&#34;, &#34;list&#34;, &#34;watch&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">---
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">apiVersion: rbac.authorization.k8s.io/v1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">kind: ClusterRoleBinding
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">metadata:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  name: security-metrics-collector
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">roleRef:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  apiGroup: rbac.authorization.k8s.io
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  kind: ClusterRole
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  name: security-metrics-collector
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">subjects:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- kind: ServiceAccount
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  name: security-metrics-collector
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  namespace: security-monitoring
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div><hr>
+<h2 id="alerting-and-automation">Alerting and Automation</h2>
+<h3 id="create-cloudwatch-alarms">Create CloudWatch Alarms</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Alarm for Critical Security Findings</span>
+</span></span><span style="display:flex;"><span>aws cloudwatch put-metric-alarm <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --alarm-name <span style="color:#e6db74">&#34;EKS-Critical-Security-Findings&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --alarm-description <span style="color:#e6db74">&#34;Critical security findings detected&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --metric-name SecurityFinding <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --namespace EKS/Security <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --statistic Sum <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --period <span style="color:#ae81ff">300</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --threshold <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --comparison-operator GreaterThanOrEqualToThreshold <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --evaluation-periods <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --alarm-actions arn:aws:sns:ap-southeast-1:ACCOUNT:eks-security-alerts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Alarm for Falco Critical Alerts</span>
+</span></span><span style="display:flex;"><span>aws cloudwatch put-metric-alarm <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --alarm-name <span style="color:#e6db74">&#34;EKS-Falco-Critical-Alerts&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --alarm-description <span style="color:#e6db74">&#34;Falco critical alerts detected&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --metric-name SecurityAlert <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --namespace EKS/Security/Falco <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --statistic Sum <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --period <span style="color:#ae81ff">300</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --threshold <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --comparison-operator GreaterThanOrEqualToThreshold <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --evaluation-periods <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --alarm-actions arn:aws:sns:ap-southeast-1:ACCOUNT:eks-security-alerts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Alarm for Pod Security Violations</span>
+</span></span><span style="display:flex;"><span>aws cloudwatch put-metric-alarm <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --alarm-name <span style="color:#e6db74">&#34;EKS-Pod-Security-Violations&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --alarm-description <span style="color:#e6db74">&#34;Pod security violations detected&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --metric-name PrivilegedPods <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --namespace EKS/Security/Pods <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --statistic Average <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --period <span style="color:#ae81ff">600</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --threshold <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --comparison-operator GreaterThanThreshold <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --evaluation-periods <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --alarm-actions arn:aws:sns:ap-southeast-1:ACCOUNT:eks-security-alerts
+</span></span></code></pre></div><h3 id="automated-response">Automated Response</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># security-response-automation.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> boto3
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> kubernetes <span style="color:#f92672">import</span> client, config
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lambda_handler</span>(event, context):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;Automated response to security alerts&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Parse CloudWatch alarm</span>
+</span></span><span style="display:flex;"><span>    message <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(event[<span style="color:#e6db74">&#39;Records&#39;</span>][<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#39;Sns&#39;</span>][<span style="color:#e6db74">&#39;Message&#39;</span>])
+</span></span><span style="display:flex;"><span>    alarm_name <span style="color:#f92672">=</span> message[<span style="color:#e6db74">&#39;AlarmName&#39;</span>]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Load kubeconfig</span>
+</span></span><span style="display:flex;"><span>    config<span style="color:#f92672">.</span>load_incluster_config()
+</span></span><span style="display:flex;"><span>    v1 <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>CoreV1Api()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Automated responses based on alarm type</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;Pod-Security-Violations&#34;</span> <span style="color:#f92672">in</span> alarm_name:
+</span></span><span style="display:flex;"><span>        quarantine_violating_pods(v1)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> <span style="color:#e6db74">&#34;Critical-Security-Findings&#34;</span> <span style="color:#f92672">in</span> alarm_name:
+</span></span><span style="display:flex;"><span>        isolate_suspicious_workloads(v1)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> <span style="color:#e6db74">&#34;Falco-Critical-Alerts&#34;</span> <span style="color:#f92672">in</span> alarm_name:
+</span></span><span style="display:flex;"><span>        scale_down_suspicious_deployments(v1)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#39;statusCode&#39;</span>: <span style="color:#ae81ff">200</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">quarantine_violating_pods</span>(v1):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;Quarantine pods with security violations&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    pods <span style="color:#f92672">=</span> v1<span style="color:#f92672">.</span>list_pod_for_all_namespaces()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> pod <span style="color:#f92672">in</span> pods<span style="color:#f92672">.</span>items:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> has_security_violation(pod):
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Add quarantine label</span>
+</span></span><span style="display:flex;"><span>            v1<span style="color:#f92672">.</span>patch_namespaced_pod(
+</span></span><span style="display:flex;"><span>                name<span style="color:#f92672">=</span>pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>name,
+</span></span><span style="display:flex;"><span>                namespace<span style="color:#f92672">=</span>pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>namespace,
+</span></span><span style="display:flex;"><span>                body<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;metadata&#39;</span>: {
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#39;labels&#39;</span>: {
+</span></span><span style="display:flex;"><span>                            <span style="color:#e6db74">&#39;security.policy/quarantine&#39;</span>: <span style="color:#e6db74">&#39;true&#39;</span>
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">isolate_suspicious_workloads</span>(v1):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;Isolate workloads with security findings&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Implementation for workload isolation</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">scale_down_suspicious_deployments</span>(v1):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;Scale down deployments with critical alerts&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Implementation for scaling down</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div><h3 id="create-sns-topic-and-subscription">Create SNS Topic and Subscription</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create SNS topic</span>
+</span></span><span style="display:flex;"><span>aws sns create-topic --name eks-security-alerts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Subscribe email</span>
+</span></span><span style="display:flex;"><span>aws sns subscribe <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --topic-arn arn:aws:sns:ap-southeast-1:ACCOUNT:eks-security-alerts <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --protocol email <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --notification-endpoint security@company.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Subscribe Lambda function</span>
+</span></span><span style="display:flex;"><span>aws sns subscribe <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --topic-arn arn:aws:sns:ap-southeast-1:ACCOUNT:eks-security-alerts <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --protocol lambda <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    --notification-endpoint arn:aws:lambda:ap-southeast-1:ACCOUNT:function:security-response-automation
+</span></span></code></pre></div><hr>
+<h2 id="summary">Summary</h2>
+<p>Security Dashboard provides:</p>
+<ol>
+<li><strong>Centralized security overview</strong>: Integrates information from GuardDuty, Config, and Falco</li>
+<li><strong>Real-time alerting</strong>: Rapid detection and response to threats</li>
+<li><strong>Automation</strong>: Automated response to security incidents</li>
+<li><strong>Compliance monitoring</strong>: Track compliance with security policies</li>
+<li><strong>Investigation and analysis</strong>: Store and analyze security events</li>
+</ol>
+<p>This dashboard helps security teams gain comprehensive visibility into EKS cluster security posture and respond promptly to threats.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/5-security-monitoring-and-response/1-logging-with-cloudwatch/" title="Container Logging to CloudWatch with Fluent Bit"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/5-security-monitoring-and-response/3-penetration-testing/" title=" Penetration Testing" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1753977789"></script>
+    <script src="/js/perfect-scrollbar.min.js?1753977789"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1753977789"></script>
+    <script src="/js/jquery.sticky.js?1753977789"></script>
+    <script src="/js/featherlight.min.js?1753977789"></script>
+    <script src="/js/highlight.pack.js?1753977789"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1753977789"></script>
+    <script src="/js/learn.js?1753977789"></script>
+    <script src="/js/hugo-learn.js?1753977789"></script>
+
+    <link href="/mermaid/mermaid.css?1753977789" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1753977789"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
